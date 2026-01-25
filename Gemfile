@@ -66,3 +66,8 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+
+#rubocopထည့်ခြင်း 
+group :development do
+  gem 'rubocop', '1.71.2', require: false
+end
