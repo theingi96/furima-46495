@@ -15,7 +15,6 @@ class User < ApplicationRecord
   validates :first_name_kana, presence: true, format: { with: VALID_KANA_REGEX }
   validates :last_name_kana,  presence: true, format: { with: VALID_KANA_REGEX }
 
-  # passwordကိုဂဏန်းခြောက်လုံးဖြင့်ပြောင်းရန်
   VALID_PASSWORD_REGEX = /\A(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]+\z/
   validates :password, format: { with: VALID_PASSWORD_REGEX }, allow_nil: true
 end
