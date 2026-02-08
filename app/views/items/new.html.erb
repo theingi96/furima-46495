@@ -1,6 +1,16 @@
 <div class="items-sell-contents">
   <header class="items-sell-header">
     <%= link_to image_tag('furima-logo-color.png' , size: '185x50'), "/" %>
+     
+  <% if @item.errors.any? %>
+    <div class="error-alert">
+      <ul>
+        <% @item.errors.full_messages.uniq.each do |message| %>
+          <li class="error-message"><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
 
   </header>
   <div class="items-sell-main">
