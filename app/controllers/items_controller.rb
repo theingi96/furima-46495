@@ -10,9 +10,11 @@ class ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
+    @item.user = current_user
     if @item.save
       redirect_to root_path
     else
+      Rails.logger.debug @item.errors.full_messages
       render :new, status: :unprocessable_entity
     end
   end
@@ -21,8 +23,8 @@ class ItemsController < ApplicationController
 
   def item_params
     params.require(:item).permit(
-      :name, :description, :price, :category_id, :condition_id,
-      :shipping_fee_id, :prefecture_id, :shipping_day_id, :image
-    ).merge(user_id: current_user.id)
+      :image, :name, :description, :price,
+      :category_id, :condition_id, :shipping_fee_id, :prefecture_id, :shipping_day_id
+    )
   end
 end
