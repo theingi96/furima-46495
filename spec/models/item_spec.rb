@@ -59,5 +59,35 @@ RSpec.describe Item, type: :model do
       @item.valid?
       expect(@item.errors.full_messages).to include('Price is not a number')
     end
+
+    it '商品の状態が---では保存できないこと' do
+      @item.condition_id = 1
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Condition can't be blank")
+    end
+
+    it '配送料の負担が---では保存できないこと' do
+      @item.shipping_fee_id = 1
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Shipping fee can't be blank")
+    end
+
+    it '発送元の地域が---では保存できないこと' do
+      @item.prefecture_id = 1
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Prefecture can't be blank")
+    end
+
+    it '発送までの日数が---では保存できないこと' do
+      @item.shipping_day_id = 1
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Shipping day can't be blank")
+    end
+
+    it 'userが紐付いていないと保存できないこと' do
+      @item.user = nil
+      @item.valid?
+      expect(@item.errors.full_messages).to include('User must exist')
+    end
   end
 end
