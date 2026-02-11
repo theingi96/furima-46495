@@ -11,7 +11,6 @@
         <%= image_tag "item-sample.png", class: "item-box-img" %>
       <% end %>
 
-      <%# sold out は購入機能後に実装（今は不要） %>
     </div>
 
     <div class="item-price-box">
@@ -19,10 +18,9 @@
       <span class="item-postage"><%= @item.shipping_fee.name %></span>
     </div>
 
-    <%# ===== ボタン条件分岐（見本通りの位置） ===== %>
     <% if user_signed_in? %>
       <% if current_user.id == @item.user_id %>
-        <%= link_to "商品の編集", "#", class: "item-red-btn" %>
+        <%= link_to "商品の編集", edit_item_path(@item), class: "item-red-btn" %>
         <p class="or-text">or</p>
         <%= link_to "削除", "#", data: { turbo_method: :delete }, class: "item-destroy" %>
       <% else %>
@@ -73,7 +71,7 @@
         <span>不適切な商品の通報</span>
       </div>
     </div>
-  </div> <%# item-box end %>
+  </div> 
 
   <div class="comment-box">
     <form>
@@ -95,6 +93,6 @@
   </div>
 
   <a href="#" class="another-item"><%= @item.category.name %>をもっと見る</a>
-</div> <%# item-show end %>
+</div>
 
 <%= render "shared/footer" %>

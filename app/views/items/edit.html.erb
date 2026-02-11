@@ -4,8 +4,9 @@
   </header>
   <div class="items-sell-main">
     <h2 class="items-sell-title">商品の情報を入力</h2>
-    <%= form_with local: true do |f| %>
-
+    <%= form_with model: @item, local: true do |f| %>
+      <%= render "shared/error_messages", model: f.object %>
+      
     <div class="img-upload">
       <div class="weight-bold-text">
         商品画像
@@ -33,7 +34,7 @@
         <%= f.text_area :description, class:"items-text", id:"item-info", placeholder:"商品の説明（必須 1,000文字まで）（色、素材、重さ、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。" ,rows:"7" ,maxlength:"1000" %>
       </div>
     </div>
-    
+
     <div class="items-detail">
       <div class="weight-bold-text">商品の詳細</div>
       <div class="form">
@@ -49,7 +50,7 @@
         <%= f.collection_select(:condition_id, Condition.all, :id, :name, {}, {class:"select-box", id:"item-sales-status"}) %>
       </div>
     </div>
-    
+
     <div class="items-detail">
       <div class="weight-bold-text question-text">
         <span>配送について</span>
@@ -102,7 +103,7 @@
         </div>
       </div>
     </div>
-    
+
     <div class="caution">
       <p class="sentence">
         <a href="#">禁止されている出品、</a>
@@ -120,14 +121,14 @@
         に同意したことになります。
       </p>
     </div>
-    
+
     <div class="sell-btn-contents">
       <%= f.submit "変更する" ,class:"sell-btn" %>
-      <%=link_to 'もどる', "#", class:"back-btn" %>
+      <%=link_to 'もどる', item_path(@item), class:"back-btn" %>
     </div>
-    
-  </div>
-  <% end %>
+
+  <% end %>  
+</div>
 
   <footer class="items-sell-footer">
     <ul class="menu">
@@ -136,8 +137,6 @@
       <li><a href="#">特定商取引に関する表記</a></li>
     </ul>
     <%= link_to image_tag('furima-logo-color.png' , size: '185x50'), "/" %>
-    <p class="inc">
-      ©︎Furima,Inc.
-    </p>
+    <p class="inc">©︎Furima,Inc.</p>
   </footer>
 </div>
