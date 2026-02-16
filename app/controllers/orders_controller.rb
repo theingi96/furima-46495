@@ -21,7 +21,6 @@ class OrdersController < ApplicationController
       @order_address.save
       redirect_to root_path
     rescue Payjp::PayjpError => e
-      Rails.logger.debug "PAYJP ERROR: #{e.message}"
       gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
       flash.now[:alert] = "決済に失敗しました。もう一度お試しください。"
       render :index, status: :unprocessable_entity
