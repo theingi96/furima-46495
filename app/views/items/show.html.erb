@@ -10,7 +10,11 @@
       <% else %>
         <%= image_tag "item-sample.png", class: "item-box-img" %>
       <% end %>
-
+      <% if @item.order.present? %>
+        <div class="sold-out">
+          <span>Sold Out</span>
+        </div>
+      <% end %>
     </div>
 
     <div class="item-price-box">
@@ -18,14 +22,13 @@
       <span class="item-postage"><%= @item.shipping_fee.name %></span>
     </div>
 
-    <% if user_signed_in? %>
-      <% if current_user.id == @item.user_id %>
-        <%= link_to "商品の編集", edit_item_path(@item), class: "item-red-btn" %>
+    <% if user_signed_in? && @item.order.present? %>
+    <% elsif current_user.id == @item.user_id %>
+      <%= link_to "商品の編集", edit_item_path(@item), class: "item-red-btn" %>
         <p class="or-text">or</p>
-        <%= link_to "削除", item_path(@item), data: { turbo_method: :delete }, class: "item-destroy" %>
-      <% else %>
-        <%= link_to "購入画面に進む", "#", class: "item-red-btn" %>
-      <% end %>
+      <%= link_to "削除", item_path(@item), data: { turbo_method: :delete }, class: "item-destroy" %>
+    <% else %>
+      <%= link_to "購入画面に進む", item_orders_path(@item), data: { turbo: false }, class:"item-red-btn" %>
     <% end %>
 
     <div class="item-explain-box">
