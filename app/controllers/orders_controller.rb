@@ -12,7 +12,6 @@ class OrdersController < ApplicationController
     @order_address = OrderAddress.new(order_params)
 
     unless @order_address.valid?
-      Rails.logger.debug "ORDER_ADDRESS ERRORS: #{@order_address.errors.full_messages}"
       gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
       return render :index, status: :unprocessable_entity
     end
