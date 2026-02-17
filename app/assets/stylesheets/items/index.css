@@ -309,3 +309,29 @@ a {
 }
 
 /* //商品一覧 */
+
+.ad-footer-contents {
+  width: 100vw;
+  background-image: url('furima-footer.png'); 
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 5vh 15vw;
+  color: #fff;
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.9);
+}
+
+.ad-footer-title {
+  font-size: 5vh;
+  margin-bottom: 2vh;
+}
+
+.ad-footer-explain {
+  font-size: 2.5vh;
+  line-height: 30px;
+}
+/* -------------------------------------- */
