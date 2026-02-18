@@ -18,8 +18,8 @@ const price = () => {
     const tax = Math.floor(itemPrice * 0.1); // 小数点以下切り捨て
     const profit = itemPrice - tax;
 
-    addTaxDom.innerHTML = tax;
-    profitDom.innerHTML = profit;
+    addTaxDom.innerHTML = tax.toLocaleString();
+    profitDom.innerHTML = profit.toLocaleString();
   });
 };
 

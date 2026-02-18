@@ -15,6 +15,7 @@ class Item < ApplicationRecord
     validates :name
     validates :description
   end
+  validates :price, presence: true
   validates :price,
             numericality: {
               only_integer: true,

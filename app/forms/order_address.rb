@@ -3,19 +3,19 @@ class OrderAddress
   attr_accessor :user_id, :item_id, :token,
                 :postal_code, :prefecture_id, :city, :addresses, :building, :phone_number
 
-  with_options presence: true do
-    validates :user_id
-    validates :item_id
-    validates :token
-    validates :city
-    validates :addresses
-    validates :phone_number
-    validates :postal_code
+    validates :token, presence: true
+    validates :postal_code, presence: true
+    validates :postal_code, 
+            format: { with: /\A\d{3}-\d{4}\z/, message: "is invalid. Enter it as follows (e.g. 123-4567)" }
     validates :prefecture_id, numericality: { other_than: 1, message: "can't be blank" }
-  end
-
-  validates :postal_code, format: { with: /\A\d{3}-\d{4}\z/, message: 'is invalid. Include hyphen(-)' }
-  validates :phone_number, format: { with: /\A\d{10,11}\z/, message: 'is invalid' }
+    validates :city, presence: true
+    validates :addresses, presence: true
+    validates :phone_number, presence: true
+    validates :phone_number, length: { minimum: 10, message: "is too short"}
+    validates :phone_number,
+            format: { with: /\A\d{10,11}\z/, message: "is invalid. Input only number" }
+    validates :user_id, presence: true
+    validates :item_id, presence: true
 
   def save
     order = Order.create(user_id: user_id, item_id: item_id)

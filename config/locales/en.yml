@@ -28,4 +28,23 @@
 #       enabled: "ON"
 
 en:
-  hello: "Hello world"
+  activerecord:
+    attributes:
+      user:
+        birthday: Birth date
+
+en:
+  devise:
+    failure:
+      invalid: "Invalid Email or password."
+
+en:
+  activerecord:
+    attributes:
+      item:
+        description: Info
+        condition_id: Sales status
+        shipping_fee_id: Shipping fee status
+        shipping_day_id: Scheduled delivery
+        category_id: Category
+        prefecture_id: Prefecture
