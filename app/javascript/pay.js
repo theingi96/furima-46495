@@ -24,7 +24,7 @@ const pay = () => {
 
     payjp.createToken(numberElement).then((response) => {
       if (response.error) {
-        alert(response.error.message);
+        form.submit();
         return;
       }
 
@@ -41,4 +41,3 @@ const pay = () => {
 };
 
 window.addEventListener("turbo:load", pay);
-window.addEventListener("turbo:render", pay);
